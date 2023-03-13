@@ -1,0 +1,69 @@
+.min-height-350{
+    min-height: 350px;
+} 
+
+.min-heght-200{
+    min-height: 200px;
+}
+
+.postion-absolute{
+    position: absolute;
+}
+.z-index-10{
+    z-index: 10;
+}
+.w-97{
+    width: 97%;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.position-relative{
+    position: relative;
+}
+.border-radius-0{
+    border-radius: 0px;
+}
+.dropdown-box-shadow{
+    box-shadow: 1px 5px 10px #cccccc59;
+}
+.z-index-10{
+    z-index: 10;
+}
+
+.customSelectOption{
+    position: relative;
+
+
+}
+.customSelectOption > span{
+    position: absolute;
+    right: 13px;
+    top: 30px;
+}
+.customSelectOption .card{
+    position: absolute;
+    width: 100%;
+    box-shadow: 1px 5px 10px #cccccc59;
+    z-index: 10;
+    max-height: 210px;
+    overflow-y: auto;
+}
+.customSelectOption .card .list-group{
+    border-radius: 0px;
+}
+.customSelectOption .card .list-group li {
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+.table-responsive{
+    min-height: 350px;;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.nowrap, .table-responsive td{
+    white-space:nowrap;
+}

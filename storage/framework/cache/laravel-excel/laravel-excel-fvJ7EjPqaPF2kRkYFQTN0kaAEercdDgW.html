@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="utf-8" />
+        <title> | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        App favicon
+        <link rel="shortcut icon" href="assets/images/favicon.ico"> -->
+
+    <meta charset="utf-8" />
+    <title>Happytel Роли</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="http://happytel-admin-panel.test/assets/images/favicon.ico">
+
+
+
+    <!-- App css -->
+    <link href="http://happytel-admin-panel.test/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://happytel-admin-panel.test/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://happytel-admin-panel.test/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://happytel-admin-panel.test/assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="http://happytel-admin-panel.test/assets/plugins/select/selectr.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://happytel-admin-panel.test/assets/plugins/huebee/huebee.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://happytel-admin-panel.test/assets/plugins/datepicker/datepicker.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Livewire Styles -->
+<style >
+    [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {
+        display: none;
+    }
+
+    [wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {
+        display:none;
+    }
+
+    [wire\:offline] {
+        display: none;
+    }
+
+    [wire\:dirty]:not(textarea):not(input):not(select) {
+        display: none;
+    }
+
+    input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+        animation-duration: 50000s;
+        animation-name: livewireautofill;
+    }
+
+    @keyframes livewireautofill { from {} }
+</style>
+</head>
+
+<body id="body" class="dark-sidebar">
+
+        <!-- leftbar-menu -->
+ <div class="left-sidebar">
+     <!-- LOGO -->
+     <div class="brand">
+         <a href="index.html" class="logo">
+             
+             <span>
+                 <img src="http://happytel-admin-panel.test/assets/images/logo.svg" alt="logo-large" class="logo-lg logo-light" style="height: 40px;">
+                 <img src="http://happytel-admin-panel.test/assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark">
+             </span>
+         </a>
+     </div>
+     <div class="sidebar-user-pro media border-end">
+         <div class="position-relative mx-auto">
+             <img src="http://happytel-admin-panel.test/assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md">
+             <span class="online-icon position-absolute end-0"><i class="mdi mdi-record text-success"></i></span>
+         </div>
+         <div class="media-body ms-2 user-detail align-self-center">
+             <h5 class="font-14 m-0 fw-bold">Admin</h5>
+             <p class="opacity-50 mb-0">admin@admin.com</p>
+         </div>
+     </div>
+     <!-- Tab panes -->
+
+     <!--end logo-->
+     <div class="menu-content h-100" data-simplebar>
+         <div class="menu-body navbar-vertical">
+             <div class="collapse navbar-collapse tab-content" id="sidebarCollapse">
+
+                 <!-- Navigation -->
+                 <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
+                     <li class="nav-item ">
+                         <a class="nav-link" href="http://happytel-admin-panel.test/admin/dashboard"><i class="fab fa-blackberry"></i><span>Dashboard</span></a>
+                     </li>
+                     
+                                             <li class="menu-label mt-0 text-primary font-12 fw-semibold">ГЛАВНЫЙ<br><span class="font-10 text-secondary fw-normal">
+                                УНИКАЛЬНАЯ Dashboard</span></li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="http://happytel-admin-panel.test/admin/agent"><i class="fas fa-building menu-icon"></i><span>Турагенты</span></a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="http://happytel-admin-panel.test/admin/customer"><i class="fas fa-user-friends menu-icon"></i><span>Клиенты</span></a>
+                        </li>
+
+                       
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAnalytics">
+                                <i class="ti ti-stack menu-icon"></i>
+                                <span>Справочники </span>
+                            </a>
+                            <div class="collapse " id="sidebarAnalytics">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/region">Региони</a>
+                                    </li>
+                                    <!--end nav-item-->
+                                    <li class="nav-item ">
+                                        <a href="http://happytel-admin-panel.test/admin/plan" class="nav-link ">Тарифы</a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a href="http://happytel-admin-panel.test/admin/additionally/plan/additional" class="nav-link ">Дополнительный план</a>
+                                    </li>
+                                    <!--end nav-item-->
+                                    <li class="nav-item ">
+                                        <a href="http://happytel-admin-panel.test/admin/simcard" class="nav-link ">Сим карты</a>
+                                    </li>
+                                    <!--end nav-item-->
+
+                                    <li class="nav-item ">
+                                        <a href="http://happytel-admin-panel.test/admin/provider" class="nav-link ">Поставшикы</a>
+                                    </li>
+                                    <!--end nav-item-->
+
+                                </ul>
+                                <!--end nav-->
+                            </div>
+                            <!--end sidebarAnalytics-->
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sidebarUserManagement" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarCrypto">
+                                <i class="fas fa-cogs menu-icon"></i>
+                                <span>Управление пользователями</span>
+                            </a>
+                            <div class="collapse " id="sidebarUserManagement">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/user">Пользователи</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                                          <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/report/agent"><i class="fas fa-chart-bar menu-icon"></i><span>Отчеты</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/create/new"><i class="far fa-plus-square menu-icon"></i><span>Создать новый заказ </span></a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/list/new"><i class="fas fa-bars menu-icon"></i><span>Новый заказы <span class="badge badge-outline-success ml-3" style="margin-left: 20px;">4</span></span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/list/cancel"><i class="fas fa-bars menu-icon"></i><span>Отменен заказы <span class="badge badge-outline-success ml-3" style="margin-left: 20px;">0</span></span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/list/accepted"><i class="fas fa-check-circle menu-icon"></i><span>Активные заказы </span> <span class="badge badge-outline-success ml-3" style="margin-left: 20px;">0</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/list/additional"><i class="fas fa-list-ul menu-icon"></i><span>Продления сим карты</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/list/all"><i class="fas fa-archive menu-icon"></i><span>Все заказов <span class="badge badge-outline-success ml-3" style="margin-left: 20px;">4</span></span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/application/list/inactive"><i class="fas fa-archive menu-icon"></i><span>Архив заказов <span class="badge badge-outline-success ml-3" style="margin-left: 20px;">0</span></span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="http://happytel-admin-panel.test/admin/customer"><i class="fas fa-users menu-icon"></i><span>Список клиентов</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-money-check-alt menu-icon"></i><span>Депозиты</span></a>
+                    </li>
+                 </ul>
+                 <ul class="navbar-nav tab-pane" id="Extra" role="tabpanel">
+                     <li>
+                         <div class="update-msg text-center position-relative">
+                             <button type="button" class="btn-close position-absolute end-0 me-2" aria-label="Close"></button>
+                             <img src="http://happytel-admin-panel.test/assets/images/speaker-light.png" alt="" class="" height="110">
+                             <h5 class="mt-0">CRM Happytel</h5>
+                             <p class="mb-3">We Design and Develop Clean and High Quality Web Applications</p>
+                             <a href="javascript: void(0);" class="btn btn-outline-warning btn-sm">Upgrade your plan</a>
+                         </div>
+                     </li>
+                 </ul>
+                 <!--end navbar-nav--->
+             </div>
+             <!--end sidebarCollapse-->
+         </div>
+     </div>
+ </div>
+ <!-- end left-sidenav-->
+ <!-- end leftbar-menu-->
+    <!-- Top Bar Start -->
+    <!-- Top Bar Start -->
+    <div class="topbar">
+        <!-- Navbar -->
+        <nav class="navbar-custom" id="navbar-custom">
+            <ul class="list-unstyled topbar-nav float-end mb-0">
+                
+                <!--end topbar-language-->
+
+                
+
+                <li class="dropdown notification-list">
+                    <div wire:id="ZdeNEFDkJHGHgYur60GQ" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;ZdeNEFDkJHGHgYur60GQ&quot;,&quot;name&quot;:&quot;notification-component&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;admin\/report\/agent&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;emits&quot;:[{&quot;event&quot;:&quot;test&quot;,&quot;params&quot;:[]}],&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;367d5ebc&quot;,&quot;data&quot;:{&quot;notifications&quot;:[]},&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;5d2c09e36bb6956d930e2fbe5dd0a8b51641cc9387500469c14616f2fff9cf9f&quot;}}">
+    <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+        <i class="ti ti-bell"></i>
+            </a>
+    <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
+
+        <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
+            Уведомления <span class="badge bg-soft-primary badge-pill"></span>
+        </h6>
+        <div class="notification-menu" data-simplebar>
+                        <a href="#" class="dropdown-item py-3">
+                Нет данных для отображения
+            </a> 
+           
+                        
+        </div>
+            </div>
+</div>
+
+<!-- Livewire Component wire-end:ZdeNEFDkJHGHgYur60GQ -->                </li>
+
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <img src="http://happytel-admin-panel.test/assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle me-2 thumb-sm" />
+                            <div>
+                                <small class="d-none d-md-block font-11"></small>
+                                <span class="d-none d-md-block fw-semibold font-12">Admin<i class="mdi mdi-chevron-down"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <form id="logout" action="http://happytel-admin-panel.test/logout" method="POST">
+                            <input type="hidden" name="_token" value="nIFZjGwUxbhY4cj4Oaygy8GDQqSCUbRL04TkaOpQ">                        </form>
+                        <a class="dropdown-item" href="javascript:;"><i class="ti ti-user font-16 me-1 align-text-bottom"></i> Profile</a>
+                        <a class="dropdown-item" href="#"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> Settings</a>
+                        <div class="dropdown-divider mb-0"></div>
+                        <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logout').submit()"><i class="ti ti-power font-16 me-1 align-text-bottom"></i> Logout</a>
+                    </div>
+                </li>
+                
+            </ul>
+            <!--end topbar-nav-->
+
+            <ul class="list-unstyled topbar-nav mb-0">
+                <li>
+                    <button class="nav-link button-menu-mobile nav-icon" id="togglemenu">
+                        <i class="ti ti-menu-2"></i>
+                    </button>
+                </li>
+                <li class="hide-phone app-search">
+                    <form role="search" action="#" method="get">
+                        <input type="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                        <button type="submit"><i class="ti ti-search"></i></button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <!-- end navbar-->
+    </div>
+    <!-- Top Bar End -->
+    <!-- Top Bar End -->
+
+    <div class="page-wrapper">
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                                            </div>
+                    <div class="col-md-12">
+                        
+                                            </div>
+                </div>
+                
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <h4 class="card-title">Отчеты</h4>
+                    <p class="text-muted mb-0">
+                        Здесь вы можете увидеть все платежные действия
+                    </p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    Платежные действия
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                                                                                <th>Агент</th>
+                                                                                                <th>Сумма</th>
+                                                                                                <th>Комментарий</th>
+                                                                                                <th>План</th>
+                                                                                                <th>Тип платежа</th>
+                                                                                                <th>Цена прибытия</th>
+                                                                                                <th>Цена продажи</th>
+                                                                                                <th>ISSID</th>
+                                                                                                <th>Дата активации</th>
+                                                                                                <th>Дата окончания</th>
+                                                                                                <th>Дата создания</th>
+                                                            </tr>
+                        </thead>
+                        <tbody>
+                                                        <tr>
+                                <td>0</td>
+
+                                                                                                <td>
+
+                                                                        Agent 1
+                                                                    </td>
+                                                                                                <td>
+
+                                                                                                            <span class="text-danger">-325,000</span>
+                                                                                                        </td>
+                                                                                                <td>
+
+                                                                        Купить сим-карту
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        14 Дней Ежедневно 3GB 4G Lte интернет
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <span class='btn btn-secondary btn-sm'>Other</span>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        310,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        325,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <a href="http://happytel-admin-panel.test/admin/application/show/56" target="_blank">550337272805545</a>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        08-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022 03:53:58
+
+                                                                    </td>
+                                                            </tr>
+                                                        <tr>
+                                <td>1</td>
+
+                                                                                                <td>
+
+                                                                        Agent 1
+                                                                    </td>
+                                                                                                <td>
+
+                                                                                                            <span class="text-danger">-250,000</span>
+                                                                                                        </td>
+                                                                                                <td>
+
+                                                                        Купить сим-карту
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        10 Дней Ежедневно 3GB 4G Lte интернет
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <span class='btn btn-primary btn-sm'>наличка</span>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        235,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        250,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <a href="http://happytel-admin-panel.test/admin/application/show/55" target="_blank">355941197052716</a>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        08-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022 03:53:35
+
+                                                                    </td>
+                                                            </tr>
+                                                        <tr>
+                                <td>2</td>
+
+                                                                                                <td>
+
+                                                                        Agent 1
+                                                                    </td>
+                                                                                                <td>
+
+                                                                                                            <span class="text-danger">-250,000</span>
+                                                                                                        </td>
+                                                                                                <td>
+
+                                                                        Купить сим-карту
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        10 Дней Ежедневно 3GB 4G Lte интернет
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <span class='btn btn-secondary btn-sm'>Other</span>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        235,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        250,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <a href="http://happytel-admin-panel.test/admin/application/show/54" target="_blank">413084782477223</a>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        08-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022 03:53:21
+
+                                                                    </td>
+                                                            </tr>
+                                                        <tr>
+                                <td>3</td>
+
+                                                                                                <td>
+
+                                                                        Agent 1
+                                                                    </td>
+                                                                                                <td>
+
+                                                                                                            <span class="text-danger">-250,000</span>
+                                                                                                        </td>
+                                                                                                <td>
+
+                                                                        Купить сим-карту
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        10 Дней Ежедневно 3GB 4G Lte интернет
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <span class='btn btn-primary btn-sm'>наличка</span>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        235,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        250,000
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        <a href="http://happytel-admin-panel.test/admin/application/show/53" target="_blank">273994537776493</a>
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        08-07-2022
+
+                                                                    </td>
+                                                                                                <td>
+
+                                                                        07-07-2022 03:53:06
+
+                                                                    </td>
+                                                            </tr>
+                                                    </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+    </div>
+</div>
+
+<!--end row-->
+<!-- end page title end breadcrumb -->
+            </div><!-- container -->
+
+            <!--Start Rightbar-->
+            <!--Start Rightbar/offcanvas-->
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                    <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <h6>Account Settings</h6>
+                    <div class="p-2 text-start mt-3">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch1">
+                            <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                        </div>
+                        <!--end form-switch-->
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                            <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                        </div>
+                        <!--end form-switch-->
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="settings-switch3">
+                            <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                        </div>
+                        <!--end form-switch-->
+                    </div>
+                    <!--end /div-->
+                    <h6>General Settings</h6>
+                    <div class="p-2 text-start mt-3">
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch4">
+                            <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                        </div>
+                        <!--end form-switch-->
+                        <div class="form-check form-switch mb-2">
+                            <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                            <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                        </div>
+                        <!--end form-switch-->
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="settings-switch6">
+                            <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                        </div>
+                        <!--end form-switch-->
+                    </div>
+                    <!--end /div-->
+                </div>
+                <!--end offcanvas-body-->
+            </div>
+            <!--end Rightbar/offcanvas-->
+            <!--end Rightbar-->
+
+            <!--Start Footer-->
+            <!-- Footer Start -->
+            <footer class="footer text-center text-sm-start">
+                &copy; <script>
+                    document.write(new Date().getFullYear())
+
+                </script> Unikit <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+            </footer>
+            <!-- end Footer -->
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+
+    <!-- Javascript  -->
+
+    <!-- App js -->
+    <script src="http://happytel-admin-panel.test/assets/js/app.js"></script>
+    <script src="http://happytel-admin-panel.test/assets/plugins/select/selectr.min.js"></script>
+    <script src="http://happytel-admin-panel.test/assets/plugins/huebee/huebee.pkgd.min.js"></script>
+    <script src="http://happytel-admin-panel.test/assets/plugins/datepicker/datepicker-full.min.js"></script>
+    <script src="http://happytel-admin-panel.test/assets/plugins/moment/moment.js"></script>
+    <script src="http://happytel-admin-panel.test/assets/plugins/imask/imask.js"></script>
+
+    <script src="http://happytel-admin-panel.test/assets/pages/forms-advanced.js"></script>
+
+    <!-- Livewire Scripts -->
+
+<script src="/livewire/livewire.js?id=c69d0f2801c01fcf8166" data-turbo-eval="false" data-turbolinks-eval="false" ></script>
+<script data-turbo-eval="false" data-turbolinks-eval="false" >
+    if (window.livewire) {
+	    console.warn('Livewire: It looks like Livewire\'s @livewireScripts JavaScript assets have already been loaded. Make sure you aren\'t loading them twice.')
+	}
+
+    window.livewire = new Livewire();
+    window.livewire.devTools(true);
+    window.Livewire = window.livewire;
+    window.livewire_app_url = '';
+    window.livewire_token = 'nIFZjGwUxbhY4cj4Oaygy8GDQqSCUbRL04TkaOpQ';
+
+	/* Make sure Livewire loads first. */
+	if (window.Alpine) {
+	    /* Defer showing the warning so it doesn't get buried under downstream errors. */
+	    document.addEventListener("DOMContentLoaded", function () {
+	        setTimeout(function() {
+	            console.warn("Livewire: It looks like AlpineJS has already been loaded. Make sure Livewire\'s scripts are loaded before Alpine.\\n\\n Reference docs for more info: http://laravel-livewire.com/docs/alpine-js")
+	        })
+	    });
+	}
+
+	/* Make Alpine wait until Livewire is finished rendering to do its thing. */
+    window.deferLoadingAlpine = function (callback) {
+        window.addEventListener('livewire:load', function () {
+            callback();
+        });
+    };
+
+    let started = false;
+
+    window.addEventListener('alpine:initializing', function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+</script>
+    <script src="http://happytel-admin-panel.test/assets/js/jquery-3.6.min.js"></script>
+    <script src="http://happytel-admin-panel.test/assets/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.8/push.min.js"></script>
+    
+            <script>
+        // toastr.options = {
+        //     "closeButton": true
+        //     , "newestOnTop": false
+        //     , "progressBar": true
+        //     , "positionClass": "toast-bottom-center"
+        //     , "preventDuplicates": false
+        //     , "onclick": null
+        //     , "showDuration": "300"
+        //     , "hideDuration": "1000"
+        //     , "timeOut": "5000"
+        //     , "extendedTimeOut": "1000"
+        //     , "showEasing": "swing"
+        //     , "hideEasing": "linear"
+        //     , "showMethod": "fadeIn"
+        //     , "hideMethod": "fadeOut"
+        // }
+        // Livewire.on('test', postId => {
+        //     console.log('test');
+        //     // toastr.success("Hello World!");
+        // })
+        
+
+    </script>
+
+
+</body>
+<!--end body-->
+</html>
