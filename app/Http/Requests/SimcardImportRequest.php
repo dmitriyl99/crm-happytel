@@ -11,7 +11,7 @@ class SimcardImportRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,17 +21,19 @@ class SimcardImportRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'file' => 'required',
+            'file' => ['required', 'file', 'mimes:xlsx,xls'],
         ];
     }
 
-    public function messages()
+    public function messages(): array
     {
         return [
             'file.required' => 'Необходимо выбрать эксель файл',
+            'file.file' => 'Необходимо выбрать эксель файл',
+            'file.mimes' => 'Необходимо выбрать эксель файл'
         ];
     }
 }

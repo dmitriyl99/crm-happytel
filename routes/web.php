@@ -60,7 +60,7 @@ Route::middleware(['auth','super_admin'])->prefix('admin')->name('admin.')->grou
     Route::post('simcard/change/agent/store',[App\Http\Controllers\Admin\SimCardController::class,'changeAgentStore'])->name('simcard.change.agent.store');
     Route::get('agent/simcards',[App\Http\Controllers\Admin\SimCardController::class,'mycards'])->name('agent.simcards');
     Route::get('simcard/create/mass',[App\Http\Controllers\Admin\SimCardController::class,'MassCreate'])->name('simcard.create.mass');
-    Route::post('simcard/import/mass',[App\Http\Controllers\Admin\SimCardController::class,'MassImport'])->name('simcard.import.mass');
+    Route::post('simcard/import/mass',[App\Http\Controllers\Admin\SimCardController::class,'massImport'])->name('simcard.import.mass');
     Route::post('simcard/store/mass',[App\Http\Controllers\Admin\SimCardController::class,'MassStore'])->name('simcard.store.mass');
 
     Route::resource('agent',App\Http\Controllers\Admin\AgentController::class);
