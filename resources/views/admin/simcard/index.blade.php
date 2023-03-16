@@ -30,6 +30,32 @@
                                 <!--end modal-header-->
                                 <div class="modal-body">
                                     <div class="row">
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label>Агент</label>
+                                                <select class="form-control" name="agent_id">
+                                                    <option value="" disabled selected>Выбирать</option>
+                                                    @forelse($agents as $key => $item)
+                                                        <option value="{{$item->id}}">{{$item->title ?? ''}}</option>
+                                                    @empty
+
+                                                    @endforelse
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-3">
+                                                <label>Регион группа</label>
+                                                <select id="countryMultiSelect" name="region_groups[]" multiple  required>
+                                                    @forelse($region_groups as $key => $item)
+                                                        <option value="{{$item->id}}">{{$item->name ?? ''}}</option>
+                                                    @empty
+
+                                                    @endforelse
+                                                </select>
+
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <div class="custom-file">
                                                 <label class="custom-file-label" for="excel">Выберите файл</label>
@@ -163,6 +189,20 @@
                 }
                 $('#selected_simcard_id').val(selected);
             });
+        });
+
+    </script>
+    <script>
+        customToggleDiv('#regionDiv');
+        customToggleDiv('#planDiv');
+        new Selectr('#countryMultiSelect', {
+            multiple: true
+        });
+
+        $(":input").keypress(function(event){
+            if (event.which == '10' || event.which == '13') {
+                event.preventDefault();
+            }
         });
 
     </script>

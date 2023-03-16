@@ -25,6 +25,9 @@ class SimcardImportRequest extends FormRequest
     {
         return [
             'file' => ['required', 'file', 'mimes:xlsx,xls'],
+            'agent_id' => ['required', 'numeric'],
+            'region_groups' => ['required', 'array'],
+            'region_groups.*' => ['required', 'numeric']
         ];
     }
 
@@ -33,7 +36,8 @@ class SimcardImportRequest extends FormRequest
         return [
             'file.required' => 'Необходимо выбрать эксель файл',
             'file.file' => 'Необходимо выбрать эксель файл',
-            'file.mimes' => 'Необходимо выбрать эксель файл'
+            'file.mimes' => 'Необходимо выбрать эксель файл',
+            'region_groups.required' => 'В поле необходимо ввести Регион группа.',
         ];
     }
 }

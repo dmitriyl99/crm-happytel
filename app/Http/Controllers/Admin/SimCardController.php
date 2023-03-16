@@ -24,6 +24,7 @@ class SimCardController extends Controller
     public function index(Request $request)
     {
         $regions = Region::where('status', 'active')->get();
+        $region_groups = RegionGroup::all();
         $agents = Agent::where('status', 'active')->get();
         $simcards = Simcard::where(function ($query) use ($request) {
 
@@ -34,8 +35,7 @@ class SimCardController extends Controller
                 $query->where('ssid', 'like', "%{$request->ssid}%");
             }
 
-            if(auth()->user()->role == 'agent' && !$request->agent_id)
-            {
+            if (auth()->user()->role == 'agent' && !$request->agent_id) {
                 if (auth()->user()->agent->id ?? false) {
                     $query->where('agent_id', '=', auth()->user()->agent->id);
                 }
@@ -43,7 +43,7 @@ class SimCardController extends Controller
 
         })->with(['agent', 'regions'])->paginate();
 
-        return view('admin.simcard.index', compact('simcards', 'regions', 'agents'));
+        return view('admin.simcard.index', compact('simcards', 'regions', 'agents', 'region_groups'));
     }
 
     public function edit($id)
@@ -55,7 +55,7 @@ class SimCardController extends Controller
         $agents = Agent::all();
         $region_groups = RegionGroup::all();
 
-        return view('admin.simcard.edit', compact('simcard','regions','agents','region_groups'));
+        return view('admin.simcard.edit', compact('simcard', 'regions', 'agents', 'region_groups'));
     }
 
     public function update($id)
@@ -81,7 +81,7 @@ class SimCardController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -101,9 +101,8 @@ class SimCardController extends Controller
 
         foreach ($request->simcards as $ssid) {
             if ($ssid) {
-                $simcard = Simcard::where('ssid',$ssid)->first();
-                if($simcard)
-                {
+                $simcard = Simcard::where('ssid', $ssid)->first();
+                if ($simcard) {
                     $simcard->update([
                         'agent_id' => $request->agent_id,
                     ]);
@@ -125,7 +124,7 @@ class SimCardController extends Controller
 //         $regions = Region::all();
         $agents = Agent::all();
         $region_groups = RegionGroup::all();
-        return view('admin.simcard.masscreate', compact('region_groups','agents'));
+        return view('admin.simcard.masscreate', compact('region_groups', 'agents'));
     }
 
     public function MassStore(SimcardRequest $request)
@@ -174,43 +173,33 @@ class SimCardController extends Controller
     public function massImport(SimcardImportRequest $request)
     {
         $file = $request->file('file');
+        $agent_id = $request->input('agent_id');
         $spreadsheet = IOFactory::load($file->path());
         $sheet = $spreadsheet->getActiveSheet();
         $rows = array_slice($sheet->toArray(), 1);
-        foreach ($rows as $key => $row) {
-            $agent_name = $row[0];
-            $region_groups_names = explode(',', $row[1]);
-            foreach ($region_groups_names as $key => $region_groups_name) {
-                $region_groups_names[$key] = trim($region_groups_name);
-            }
-            $simcards = explode(' ', $row[2]);
+        foreach ($rows as $row) {
+            $simcard_ssid = $row[0];
             /** @var Agent $agent */
-            $agent = Agent::query()->where('title', $agent_name)->first();
+            $agent = Agent::query()->find($agent_id);
             if ($agent === null) {
-                return redirect()->route('admin.simcard.index')->with(['error' => "Агент $agent_name не найден"]);
+                return redirect()->route('admin.simcard.index')->with(['error' => "Агент $agent_id не найден"]);
             }
-            $region_groups = RegionGroup::query()->whereIn('name', $region_groups_names)->pluck('id');
-            if (count($region_groups_names) !== $region_groups->count()) {
-                $row_number = $key + 1;
-                return redirect()->route('admin.simcard.index')->with(['error' => "Неправильная регион группа в строке $row_number"]);
-            }
-            foreach ($simcards as $simcard_ssid) {
+            $region_groups = $request->input('region_groups');
+            /** @var Simcard $simcard */
+            $simcard = Simcard::query()->where('ssid', $simcard_ssid)->first();
+            if ($simcard === null) {
                 /** @var Simcard $simcard */
-                $simcard = Simcard::query()->where('ssid', $simcard_ssid)->first();
-                if ($simcard === null) {
-                    /** @var Simcard $simcard */
-                    $simcard = Simcard::query()->create([
-                        'ssid' => $simcard_ssid,
-                        'price' => null,
-                        'status' => 'inactive',
-                        'agent_id' => $agent->id,
-                    ]);
+                $simcard = Simcard::query()->create([
+                    'ssid' => $simcard_ssid,
+                    'price' => null,
+                    'status' => 'inactive',
+                    'agent_id' => $agent->id,
+                ]);
 
-                    $simcard->region_groups()->attach($region_groups->toArray());
+                $simcard->region_groups()->attach($region_groups);
 
-                } else {
-                    $simcard->region_groups()->sync($region_groups->toArray());
-                }
+            } else {
+                $simcard->region_groups()->sync($region_groups);
             }
         }
         return redirect()->route('admin.simcard.index')->with(['succes' => 'Successfully created!']);
