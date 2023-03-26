@@ -53,6 +53,7 @@ Route::middleware(['auth','super_admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('region',App\Http\Controllers\Admin\RegionController::class);
     Route::resource('region_group',App\Http\Controllers\Admin\RegionGroupController::class);
     Route::resource('listproduct',App\Http\Controllers\Admin\ListproductController::class);
+    Route::post('listproduct/import', [App\Http\Controllers\Admin\ListproductController::class, 'import'])->name('listproduct.import');
     Route::resource('newp',App\Http\Controllers\Admin\NewpController::class);
 
     Route::resource('simcard',App\Http\Controllers\Admin\SimCardController::class);

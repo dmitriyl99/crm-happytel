@@ -12,7 +12,8 @@
                 <div>
                     <h4 class="card-title">Гаджеты</h4>
                     <p class="text-muted mb-0 fw-semibold">Количество: {{$listproduct->total()}}</p>
-                    <p class="text-muted mb-0">Здесь вы можете увидеть все Гаджеты <a href="{{route('admin.listproduct.create')}}" class="btn btn-success float-end">Создать</a>
+                    <p class="text-muted mb-0">Здесь вы можете увидеть все Гаджеты <a href="{{route('admin.listproduct.index')}}" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                                                                      data-bs-target="#importProducts">Импортировать товары</a> <a href="{{route('admin.listproduct.create')}}" class="btn btn-success float-end">Создать</a>
                     </p>
                 </div>
             </div>
@@ -94,5 +95,44 @@
     </div>
     <!--end col-->
 </div>
+<div class="modal fade" id="importProducts" tabindex="-1" role="dialog" aria-labelledby="importLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" action="{{route('admin.listproduct.import')}}" id="import"
+              enctype="multipart/form-data" method="POST">
+            @csrf
+            <div class="modal-header">
+                <h6 class="modal-title m-0" id="importLabel">Импортировать товары</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <!--end modal-header-->
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="excel">Выберите файл</label>
+                            <input type="file" name="file" class="custom-file-input form-control"
+                                   id="excel">
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+            <!--end modal-body-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-de-secondary btn-sm" data-bs-dismiss="modal">
+                    Закрыть
+                </button>
+                <button type="submit" name="submit" class="btn btn-primary btn-sm">Загрузить
+                </button>
+            </div>
+            <!--end modal-footer-->
+        </form>
+        <!--end modal-content-->
+    </div>
+    <!--end modal-dialog-->
+</div>
+<!--end modal-->
 <!-- end page title end breadcrumb -->
 @endsection

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Listproduct;
 use App\Http\Requests\ListproductRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class ListproductController extends Controller
@@ -82,5 +84,31 @@ class ListproductController extends Controller
         }
 
         return redirect()->route('admin.listproduct.index')->with(['success' => 'Successfully created!']);
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => ['required', 'file']
+        ]);
+        $file = $request->file('file');
+        $spreadsheet = IOFactory::load($file->path());
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = array_slice($sheet->toArray(), 1);
+        foreach ($rows as $row) {
+            if ($row[0] == null) {
+                continue;
+            }
+            $product = new Listproduct();
+            $product->name = $row[0];
+            $product->desc = $row[1];
+            $product->count = $row[2];
+            $product->price_1 = $row[3];
+            $product->price_2 = $row[5];
+            $product->price_3 = $row[4];
+            $product->barcode = $row[6];
+            $product->save();
+        }
+        return redirect()->route('admin.listproduct.index')->with(['success' => 'Successfully imported!']);
     }
 }
