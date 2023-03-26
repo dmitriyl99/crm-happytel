@@ -13,9 +13,17 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ListproductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $listproduct = Listproduct::query()->orderByDesc('created_at')->paginate(10);
+        $listProductQuery = Listproduct::query();
+
+        if($request->key){
+            $listProductQuery->where('name','like','%'.$request->key.'%')
+                ->orWhere('desc','like','%'.$request->key.'%')
+                ->orWhere('barcode','like','%'.$request->key.'%');
+        }
+
+        $listproduct = $listProductQuery->orderByDesc('created_at')->paginate(10);
         return view('admin.listproduct.index', compact('listproduct'));
     }
     public function create()

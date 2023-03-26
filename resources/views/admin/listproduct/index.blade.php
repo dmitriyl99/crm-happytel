@@ -4,6 +4,15 @@
 @section('content')
 <!-- Page-Title -->
 <div class="row">
+    <div class="col-md-12">
+        <form method="GET" action="{{route('admin.listproduct.index')}}">
+            <div class="input-group mb-3">
+                <input type="text" value="{{ request()->key ?? ''}}" name="key" class="form-control" placeholder="Название | Описание  | Штрих Код" aria-label="Название | Описание  | Регион" aria-describedby="button-addon2">
+                <button class="btn btn-secondary" type="submit" id="button-addon2">Поиск</button>
+            </div>
+        </form>
+
+    </div>
 
     <div class="col-md-12">
 
