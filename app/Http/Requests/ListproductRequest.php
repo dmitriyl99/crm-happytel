@@ -25,6 +25,7 @@ class ListproductRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:listproduct,name,'.$this->listproduct,
+            'barcode' => 'sometimes|nullable|string'
         ];
     }
 

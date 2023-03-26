@@ -22,3 +22,7 @@
     <label for="">Кол-во товара</label>
     <input class="form-control" type="number" name="count" placeholder="Кол-во товара" value="{{old('count') ?? $listproduct->count ?? ''}}" required>
 </div>
+<div class="mb-3">
+    <label for="">Штрих Код</label>
+    <input class="form-control" type="text" name="barcode" placeholder="Штрих Код (barcode)" value="{{old('barcode') ?? $listproduct->barcode ?? ''}}">
+</div>

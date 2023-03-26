@@ -29,6 +29,7 @@
                                 <th>Цена Продажи uzs</th>
                                 <th>Дата создание</th>
                                 <th>Количество</th>
+                                <th>Штрих Код</th>
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
@@ -58,6 +59,9 @@
                                 <td>
                                     {{$data->count}}
                                 </td>
+                                <td>
+                                    {{$data->barcode}}
+                                </td>
                                 <td class="text-end">
                                     <form id="form{{$data->id}}" action="{{route('admin.listproduct.destroy',$data->id)}}" method="post" class="d-none">
                                         @method('DELETE')
@@ -75,7 +79,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                     <!--end /table-->
