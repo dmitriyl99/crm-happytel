@@ -73,6 +73,7 @@
                             <th>Тип платежа</th>
                             <th>Дата создание</th>
                             <th>Количество</th>
+                            <th>Цена Продажи uzs</th>
                             <th>Пользователь</th>
                             <th>#</th>
                         </tr>
@@ -95,6 +96,7 @@
                             <td>
                                 {{($item->count ?? '')}}
                             </td>
+                            <td>{{ $item->listproduct->price_3 ?? ''}}</td>
                             <td>
                                 {{($item->customer_id ?? '')}}
                             </td>

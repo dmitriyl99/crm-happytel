@@ -29,7 +29,7 @@ class NewpController extends Controller
     //     return view('admin.newp.index', compact('newp','lists'));
     // }
 
-    /** 
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -124,7 +124,7 @@ class NewpController extends Controller
 
     public function index(Request $request)
     {
-        $entityQuery = Newp::where(function ($query) {
+        $entityQuery = Newp::query()->where(function ($query) use ($request) {
 
             if (request()->product_id) {
                 $query->where('product_id', request()->product_id);
@@ -139,7 +139,7 @@ class NewpController extends Controller
                 $query->where('payment_type', request()->payment_type);
             }
         })->orderBy('created_at', 'DESC')->with([
-            'listproduct',
+            'listproduct', 'customer'
         ]);
         if ($request->excel) {
             $newQuery = clone $entityQuery;
