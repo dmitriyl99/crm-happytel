@@ -48,10 +48,16 @@
                          <div class="collapse " id="product">
                              <ul class="nav flex-column">
                                  <li class="nav-item {{ (request()->is('/admin/product/listproduct*')) ? 'menuitem-active' : '' }}">
-                                     <a class="nav-link" href="{{route('admin.listproduct.index')}}">Список Товаров</a>
+                                     <a class="nav-link" href="{{route('admin.listproduct.index')}}">Справочник товаров</a>
+                                 </li>
+                                 <li class="nav-item {{ (request()->is('/admin/product/warehouse*')) ? 'menuitem-active' : '' }}">
+                                     <a class="nav-link" href="{{route('admin.warehouse.index')}}">Оприходование на склад</a>
                                  </li>
                                  <li class="nav-item {{ (request()->is('/admin/product/newp*')) ? 'menuitem-active' : '' }}">
-                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Создать Новые Заказы</a>
+                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Продажа новых товаров</a>
+                                 </li>
+                                 <li class="nav-item {{ (request()->is('/admin/product/newp*')) ? 'menuitem-active' : '' }}">
+                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Возвраты</a>
                                  </li>
                                  <li class="nav-item {{ (request()->is('/admin/newp/newp*')) ? 'menuitem-active' : '' }}">
                                      <a class="nav-link" href="{{route('admin.newp.index')}}">Проданные товары

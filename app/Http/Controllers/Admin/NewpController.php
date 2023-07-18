@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewpRequest;
+use App\Models\ProductIncome;
+use App\Models\ProductSales;
 use Illuminate\Http\Request;
 use App\Models\Newp;
 use App\Models\Listproduct;
@@ -84,6 +86,42 @@ class NewpController extends Controller
 
     public function store(NewpRequest $request)
     {
+        foreach ((session('newp') ?? []) as $key => $item) {
+            Newp::create([
+                'product_id' => $item['product_id'],
+                'payment_type' => $request->payment_type,
+                'customer_id' => auth()->user()->name, // тот кто продал
+                'count' => $item['count']
+            ]);
+            $list = Listproduct::where('id', $item['product_id'])->first();
+            /** @var Listproduct $product */
+            $product = Listproduct::findOrFail($item['product_id']);
+            /** @var ProductIncome $productIncome */
+            $productIncome = ProductIncome::query()
+                ->where('barcode', $item['barcode'])
+                ->first();
+
+            if ($product->count > 0 and $productIncome->count > 0) {
+                $productSale = new ProductSales();
+                $productSale->product_id = $product->id;
+                $productSale->product_income_id = $productIncome->id;
+                $productSale->count = $item['count'];
+                $productSale->barcode = $item['barcode'];
+                $productSale->selling_price_uzs = $item['barcode'];
+                $productSale->sold_by_id = auth()->user()->id;
+                $productSale->created_at = now();
+                $productSale->updated_at = now();
+                $productSale->save();
+
+                $fields = [
+                    'count' => $product->count - $item['count'],
+                ];
+            }
+
+            $list->update($fields);
+
+        }
+
         if (!$request->customer_id) {
             $customer = Customer::create([
                 'full_name' => $request->full_name ?? '',
@@ -99,20 +137,6 @@ class NewpController extends Controller
                     'passport' => FileUpload::handle($request->file('passport'), 'passport')
                 ]);
             }
-        }
-        foreach ((session('newp') ?? []) as $key => $item) {
-            Newp::create([
-                'product_id' => $item['product_id'],
-                'payment_type' => $request->payment_type,
-                'customer_id' => auth()->user()->name,
-                'count' => $item['count']
-            ]);
-            $list = Listproduct::where('id', $item['product_id'])->first();
-            $user = Listproduct::findOrFail($item['product_id']);
-            $fields = [
-                'count' => $user->count - $item['count'],
-            ];
-            $list->update($fields);
         }
         return redirect()->route('admin.newp.index')->with(['success' => 'Создано успешно']);
     }

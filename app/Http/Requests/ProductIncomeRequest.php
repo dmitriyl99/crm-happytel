@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewpRequest extends FormRequest
+class ProductIncomeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,15 @@ class NewpRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_id' => 'required',
-            'count' => 'required',
-            'payment_type' => 'required',
-            'barcode' => 'required',
+            'name' => 'required:listproduct,name,'.$this->product,
+            'barcode' => 'sometimes|nullable|string'
         ];
     }
-
 
     public function messages()
     {
         return [
-            'product_id.required' => 'Необходимо выбрать продукт',
-            'count.required' => 'Необходимо ввести количество.',
-            'payment_type.required' => 'Необходимо ввести вид платежа',
+            'name.required' => 'Необходимо ввести название в поле.',
         ];
     }
 }
