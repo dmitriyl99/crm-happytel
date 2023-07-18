@@ -44,6 +44,12 @@
                                 <input class="form-control" type="date" name="from" value="{{request()->from ? date('Y-m-d',strtotime(request()->from)) : ''}}">
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="mb-2">
+                                <label for="">Дата создания (до)</label>
+                                <input class="form-control" type="date" name="to" value="{{request()->to ? date('Y-m-d',strtotime(request()->to)) : ''}}">
+                            </div>
+                        </div>
 
                     </div>
                     <button class="btn btn-primary" type="submit">
