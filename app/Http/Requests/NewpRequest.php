@@ -27,7 +27,6 @@ class NewpRequest extends FormRequest
             'product_id' => 'required',
             'count' => 'required',
             'payment_type' => 'required',
-            'barcode' => 'required',
         ];
     }
 

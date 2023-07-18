@@ -35,7 +35,7 @@ class ApplicationController extends Controller
         return view('admin.application.index', compact('regions', 'plans', 'agents', 'users'));
     }
 
-    /** 
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -56,9 +56,9 @@ class ApplicationController extends Controller
     public function store(ApplicationRequest $request)
     {
         //         request()->validate([
-        //             'simcards.*' => 'required', 
-        //             'plans.*' => 'required', 
-        //             'region_groups.*' => 'required', 
+        //             'simcards.*' => 'required',
+        //             'plans.*' => 'required',
+        //             'region_groups.*' => 'required',
         //         ]);
 
         if (!$request->customer_id) {
@@ -238,6 +238,11 @@ class ApplicationController extends Controller
                 $application->update([
                     'status' => $status
                 ]);
+                if ($request->status == 'cancel') {
+                    $agent = $application->agent;
+                    $agent->balance -= $application->plan->price_sell;
+                    $agent->save();
+                }
             }
         }
         return back()->with(['success' => 'Процесс успешно']);

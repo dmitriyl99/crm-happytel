@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewpRequest;
 use App\Models\ProductIncome;
 use App\Models\ProductSales;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Newp;
 use App\Models\Listproduct;
-use App\Models\Setting;
-use App\Models\PaymentAction;
 use App\Exports\NewpExport;
+use Illuminate\Http\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Customer;
 use App\Helpers\FileUpload;
-use Illuminate\Support\Facades\DB;
 
 
 class NewpController extends Controller
@@ -23,7 +24,7 @@ class NewpController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     // public function index(){
     //     $lists = Listproduct::all();
@@ -34,7 +35,7 @@ class NewpController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -93,21 +94,19 @@ class NewpController extends Controller
                 'customer_id' => auth()->user()->name, // тот кто продал
                 'count' => $item['count']
             ]);
-            $list = Listproduct::where('id', $item['product_id'])->first();
             /** @var Listproduct $product */
             $product = Listproduct::findOrFail($item['product_id']);
             /** @var ProductIncome $productIncome */
             $productIncome = ProductIncome::query()
-                ->where('barcode', $item['barcode'])
+                ->where('barcode', $product->barcode)
                 ->first();
-
             if ($product->count > 0 and $productIncome->count > 0) {
                 $productSale = new ProductSales();
                 $productSale->product_id = $product->id;
                 $productSale->product_income_id = $productIncome->id;
-                $productSale->count = $item['count'];
-                $productSale->barcode = $item['barcode'];
-                $productSale->selling_price_uzs = $item['barcode'];
+                $productSale->count = intval($item['count']);
+                $productSale->barcode = $product->barcode;
+                $productSale->selling_price_uzs = $product->price_3; # TODO remove from migration add payment_type
                 $productSale->sold_by_id = auth()->user()->id;
                 $productSale->created_at = now();
                 $productSale->updated_at = now();
@@ -116,10 +115,8 @@ class NewpController extends Controller
                 $fields = [
                     'count' => $product->count - $item['count'],
                 ];
+                $product->update($fields);
             }
-
-            $list->update($fields);
-
         }
 
         if (!$request->customer_id) {
