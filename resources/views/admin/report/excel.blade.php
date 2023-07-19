@@ -4,6 +4,7 @@
     'type' => 'Тип',
     'fee' => 'Сумма',
     'message' => 'Комментарий',
+    'application->plan->region_group->name' => 'Регион группа',
     'application->plan->name' => 'План',
     'application->plan->provider->name' => "Поставшик",
     'application->customer->name' => "Клиент",
@@ -154,6 +155,9 @@
 
                         @elseif($key == 'created_at')
                             {{date('d-m-Y H:i:s',strtotime($item->created_at ?? ''))}}
+
+                        @elseif($key == 'application->plan->region_group->name' && isset($item->application))
+                            {{$item->application->plan ? $item->application->region_group ? $item->application->region_group->name : '' : ''}}
 
                         @elseif($key == 'application->plan->name' && isset($item->application))
                             {{$item->application->plan->name ?? ''}}

@@ -10,6 +10,7 @@ $columns = [
 'type' => 'Тип',
 'fee' => 'Сумма',
 'message' => 'Комментарий',
+'application->plan->region_group->name' => 'Регион группа',
 'application->plan->name' => 'План',
 'application->plan->provider->name' => "Поставщик",
 'application->customer->name' => "Клиент",
@@ -23,14 +24,13 @@ $columns = [
 'created_at' => 'Дата создания',
 ];
 $table = 'table_reports';
-if(empty(session()->get($table))){
 session()->put($table,array_keys($columns));
-}
 
 
 $columnsu = [
 'application->plan->type' => 'Fare type',
 'fee' => 'Amount',
+'application->plan->region_group->name' => 'Region Group',
 'application->plan->name' => 'Plan',
 'application->customer->name' => "Client",
 'simcard->ssid' => 'ICCID',
@@ -256,6 +256,7 @@ session()->put($table,array_keys($columns));
                                         <th>Тип</th>
                                         <th>Сумма</th>
                                         <th>Комментарий</th>
+                                        <th>Регион группа</th>
                                         <th>План</th>
                                         <th>Клиент</th>
                                         <th>Ползователь</th>
@@ -305,6 +306,7 @@ session()->put($table,array_keys($columns));
                                             @endif
                                         </td>
                                         <td>{{$item->application->plan->price_user ?? 0}} $</td>
+                                        <td>{{$item->application->plan ? $item->application->region_group ? $item->application->region_group->name : '' : ''}}</td>
                                         <td>{{$item->application->plan->name ?? ''}}</td>
                                         <td>{{$item->application->customer->full_name ?? ''}}<br>
                                             {{$item->application->customer->phone ?? ''}}
@@ -345,6 +347,7 @@ session()->put($table,array_keys($columns));
                                             @endif
                                         </td>
                                         <td>{{$item->message ?? ''}}</td>
+                                        <td>{{$item->application->plan ? $item->application->region_group ? $item->application->region_group->name : '' : ''}}</td>
                                         <td>{{$item->application->plan->name ?? ''}}</td>
                                         <td>{{$item->application->customer->full_name ?? ''}}<br>
                                             {{$item->application->customer->phone ?? ''}}
@@ -414,6 +417,9 @@ session()->put($table,array_keys($columns));
 
                                             @elseif($key == 'created_at')
                                             {{date('d-m-Y H:i:s',strtotime($item->created_at ?? 'now'))}}
+
+                                            @elseif($key == 'application->plan->region_group->name' && isset($item->application))
+                                                {{$item->application->plan ? $item->application->region_group ? $item->application->region_group->name : '' : ''}}
 
                                             @elseif($key == 'application->plan->name' && isset($item->application))
                                             {{$item->application->plan->name ?? ''}}
