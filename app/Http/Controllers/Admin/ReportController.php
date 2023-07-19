@@ -107,7 +107,6 @@ class ReportController extends Controller
         $newQuery = clone $entityQuery;
 
 
-        $all = $newQuery->get();
         $simcardCount = $newQuery->count();
 
         $newQuery = clone $entityQuery;
