@@ -50,7 +50,7 @@
                             <!--<th>Агент</th>-->
                             @if(auth()->user()->isAdmin() || auth()->user()->isSuperAdmin())
                                 <th>Поставшик</th>
-                                <th>Ползовател</th>
+                                <th>Ползователь</th>
                             @endif
                             <th>Статус</th>
                             <th>Регион Группа</th>

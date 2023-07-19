@@ -259,6 +259,7 @@ class ApplicationController extends Controller
         $newApplication->region_group_id = request()->region_group_id;
         $newApplication->plan_id = request()->plan_id;
         $newApplication->status = "new";
+        $newApplication->user_id = auth()->user()->id;
         $newApplication->save();
         return redirect()->route('admin.application.create', 'new')->with(['success' => 'Процесс успешно']);
     }
