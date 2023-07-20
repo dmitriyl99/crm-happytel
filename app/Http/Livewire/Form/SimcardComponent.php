@@ -8,8 +8,9 @@ class SimcardComponent extends Component
 {
     public $simcards = [];
     public $simcard;
+    public $esim = false;
     public $manual = false;
-    
+
     public function mount($simcards)
     {
 //         foreach($simcards as $item)
@@ -28,15 +29,23 @@ class SimcardComponent extends Component
 
     public function addSimcard()
     {
-        $this->simcards["{$this->simcard}"] = $this->simcard;
+        $this->simcards["{$this->simcard}"] = [
+            'ssid' => $this->simcard,
+            'esim' => $this->esim ?? null,
+        ];
         $this->simcard = '';
+        $this->esim = false;
     }
 
     public function updatedSimcard()
     {
         if(strlen($this->simcard) > 10 && $this->manual == false){
-            $this->simcards["{$this->simcard}"] = $this->simcard;
+            $this->simcards["{$this->simcard}"] = [
+                'ssid' => $this->simcard,
+                'esim' => $this->esim ?? null
+            ];
             $this->simcard = '';
+            $this->esim = false;
         }
     }
 

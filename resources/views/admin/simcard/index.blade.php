@@ -106,6 +106,7 @@
                                 <th>ICCID</th>
                                 <th>Регион группа</th>
                                 <th>Агент</th>
+                                <th>eSim</th>
                                 <th>Цена</th>
                                 <th class="text-end"></th>
                             </tr>
@@ -123,6 +124,12 @@
                                         @endforeach
                                     </td>
                                     <td>{{$data->agent->title ?? ''}}</td>
+{{--                                    <td>{{$data->esim ?? ''}}</td>--}}
+                                    <td>
+                                        @if($data->esim)
+                                            <img src="{{ asset('assets/images/check-circle.svg')}}" alt="esim" class="logo-sm logo-light">
+                                        @endif
+                                    </td>
                                     <td>{{$data->price ?? ''}}</td>
                                     @if(auth()->user()->role != 'agent')
                                         <td class="text-end">

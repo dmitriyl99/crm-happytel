@@ -147,17 +147,15 @@ class SimCardController extends Controller
 //                 $simcard->regions()->sync($request->regions);
 //             }
 //         }
-        foreach ($request->simcards as $item) {
-            if (!$item) {
-                continue;
-            }
-            $simcard = Simcard::where('ssid', $item)->first();
+        foreach ($request->simcards['esim'] as $ssid => $esim) {
+            $simcard = Simcard::where('ssid', $ssid)->first();
             if (!$simcard) {
                 $simcard = Simcard::create([
-                    'ssid' => $item,
+                    'ssid' => $ssid,
                     'price' => $request->price,
                     'status' => 'inactive',
                     'agent_id' => $request->agent_id,
+                    'esim' => $esim == "true",
                 ]);
 
                 $simcard->region_groups()->attach($request->region_groups);

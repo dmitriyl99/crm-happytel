@@ -12,6 +12,7 @@ $columns = [
 'message' => 'Комментарий',
 'application->plan->region_group->name' => 'Регион группа',
 'application->plan->name' => 'План',
+'simcard->esim' => 'eSim',
 'application->plan->provider->name' => "Поставщик",
 'application->customer->name' => "Клиент",
 'application->user->name' => "Ползователь",
@@ -32,6 +33,7 @@ $columnsu = [
 'fee' => 'Amount',
 'application->plan->region_group->name' => 'Region Group',
 'application->plan->name' => 'Plan',
+'simcard->esim' => 'eSim',
 'application->customer->name' => "Client",
 'simcard->ssid' => 'ICCID',
 'application->date_start' => 'Activation date',
@@ -258,6 +260,7 @@ session()->put($table,array_keys($columns));
                                         <th>Комментарий</th>
                                         <th>Регион группа</th>
                                         <th>План</th>
+                                        <th>eSim</th>
                                         <th>Клиент</th>
                                         <th>Ползователь</th>
                                         <th>Тип платежа</th>
@@ -308,6 +311,11 @@ session()->put($table,array_keys($columns));
                                         <td>{{$item->application->plan->price_user ?? 0}} $</td>
                                         <td>{{$item->application->plan ? $item->application->region_group ? $item->application->region_group->name : '' : ''}}</td>
                                         <td>{{$item->application->plan->name ?? ''}}</td>
+                                        <td>
+                                            @if($item->application->simcard->esim)
+                                                <img src="{{ asset('assets/images/check-circle.svg')}}" alt="esim" class="logo-sm logo-light">
+                                            @endif
+                                        </td>
                                         <td>{{$item->application->customer->full_name ?? ''}}<br>
                                             {{$item->application->customer->phone ?? ''}}
                                         </td>
@@ -349,6 +357,11 @@ session()->put($table,array_keys($columns));
                                         <td>{{$item->message ?? ''}}</td>
                                         <td>{{$item->application->plan ? $item->application->region_group ? $item->application->region_group->name : '' : ''}}</td>
                                         <td>{{$item->application->plan->name ?? ''}}</td>
+                                        <td>
+                                            @if($item->application->simcard->esim)
+                                                <img src="{{ asset('assets/images/check-circle.svg')}}" alt="esim" class="logo-sm logo-light">
+                                            @endif
+                                        </td>
                                         <td>{{$item->application->customer->full_name ?? ''}}<br>
                                             {{$item->application->customer->phone ?? ''}}
                                         </td>
@@ -423,6 +436,11 @@ session()->put($table,array_keys($columns));
 
                                             @elseif($key == 'application->plan->name' && isset($item->application))
                                             {{$item->application->plan->name ?? ''}}
+
+                                            @elseif($key == 'simcard->esim' && isset($item->application))
+                                                @if($item->application->simcard->esim)
+                                                    <img src="{{ asset('assets/images/check-circle.svg')}}" alt="esim" class="logo-sm logo-light">
+                                                @endif
 
                                             @elseif($key == 'message')
                                             {{$item->message ?? ''}}
