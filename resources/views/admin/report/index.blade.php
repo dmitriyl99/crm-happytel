@@ -437,10 +437,10 @@ session()->put($table,array_keys($columns));
                                             @elseif($key == 'application->plan->name' && isset($item->application))
                                             {{$item->application->plan->name ?? ''}}
 
-                                            @elseif($key == 'simcard->esim' && isset($item->application))
-                                                @if($item->application->simcard->esim)
-                                                    <img src="{{ asset('assets/images/check-circle.svg')}}" alt="esim" class="logo-sm logo-light">
-                                                @endif
+{{--                                            @elseif($key == 'simcard->esim' && isset($item->application))--}}
+{{--                                                @if($item->application->simcard->esim)--}}
+{{--                                                    <img src="{{ asset('assets/images/check-circle.svg')}}" alt="esim" class="logo-sm logo-light">--}}
+{{--                                                @endif--}}
 
                                             @elseif($key == 'message')
                                             {{$item->message ?? ''}}
