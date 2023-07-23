@@ -8,6 +8,7 @@ use App\Http\Requests\ProductIncomeRequest;
 use App\Models\Listproduct;
 use App\Http\Requests\ListproductRequest;
 use App\Models\ProductIncome;
+use App\Models\Warehouse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -115,6 +116,14 @@ class WarehouseController extends Controller
         $product_income->created_at = now();
         $product_income->updated_at = now();
         $product_income->save();
+
+        $warehouse = new Warehouse();
+        $warehouse->product_income_id = $product_income->id;
+        $warehouse->product_id = $product->id;
+        $warehouse->count = $product_income->count;
+        $warehouse->created_at = now();
+        $warehouse->updated_at = now();
+        $warehouse->save();
 
         return redirect()->route('admin.warehouse.index')->with(['success' => 'Successfully created!']);
     }

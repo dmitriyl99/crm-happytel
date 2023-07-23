@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $product_id
  * @property Listproduct $product
  * @property ProductIncome $productIncome
+ * @property int $product_income_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
