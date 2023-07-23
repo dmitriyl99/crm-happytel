@@ -85,11 +85,12 @@ class WarehouseController extends Controller
 
     public function store(ProductIncomeRequest $request)
     {
+        /** @var Listproduct|null $product */
         $product = Listproduct::query()
             ->where('name', $request->input('name'))
             ->first();
 
-        if (!$product) {
+        if ($product === null) {
             /** @var Listproduct $product */
             $product = Listproduct::create([
                 'name' => $request->name,
