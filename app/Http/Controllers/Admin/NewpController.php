@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewpRequest;
-use App\Models\ProductIncome;
-use App\Models\ProductSales;
+use App\Models\Warehouse;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -88,34 +87,40 @@ class NewpController extends Controller
     public function store(NewpRequest $request)
     {
         foreach ((session('newp') ?? []) as $key => $item) {
-            Newp::create([
-                'product_id' => $item['product_id'],
-                'payment_type' => $request->payment_type,
-                'customer_id' => auth()->user()->name, // тот кто продал
-                'count' => $item['count']
-            ]);
-            /** @var Listproduct $product */
-            $product = Listproduct::findOrFail($item['product_id']);
-            /** @var ProductIncome $productIncome */
-            $productIncome = ProductIncome::query()
-                ->where('barcode', $product->barcode)
-                ->first();
-            if ($product->count > 0 and $productIncome->count > 0) {
-                $productSale = new ProductSales();
-                $productSale->product_id = $product->id;
-                $productSale->product_income_id = $productIncome->id;
-                $productSale->count = intval($item['count']);
-                $productSale->barcode = $product->barcode;
-                $productSale->selling_price_uzs = $product->price_3; # TODO remove from migration add payment_type
-                $productSale->sold_by_id = auth()->user()->id;
-                $productSale->created_at = now();
-                $productSale->updated_at = now();
-                $productSale->save();
+            /** @var Listproduct|null $product */
+            $product = Listproduct::query()->find($item['product_id']);
 
+            if ($product === null) {
+                continue;
+            }
+
+            /** @var Warehouse|null $first_income_in_warehouse */
+            $first_income_in_warehouse = Warehouse::query()
+                ->where('product_id', $product->id)
+                ->where('count', '>', 0)
+                ->orderBy('created_at')
+                ->first();
+
+            $new_sale = new Newp();
+            $new_sale->product_id = $item['product_id'];
+            $new_sale->product_income_id = $first_income_in_warehouse ? $first_income_in_warehouse->product_income_id : null;
+            $new_sale->payment_type = $request->payment_type;
+            $new_sale->customer_id = auth()->user()->name; // тот кто продал
+            $new_sale->count = $item['count'];
+            $new_sale->save();
+
+
+            if ($product->count > 0) {
                 $fields = [
                     'count' => $product->count - $item['count'],
                 ];
                 $product->update($fields);
+            }
+            if ($first_income_in_warehouse != null and $first_income_in_warehouse->count > 0) {
+                $first_income_in_warehouse->update([
+                    'count' => $first_income_in_warehouse->count - intval($item['count']),
+                    'updated_at' => now()
+                ]);
             }
         }
 

@@ -2,9 +2,24 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Newp.
+ * @property int $id
+ * @property string $count
+ * @property string $payment_type
+ * @property int $product_id
+ * @property Listproduct $listproduct
+ * @property int $product_income_id
+ * @property ProductIncome $productIncome
+ * @property User $sold_by
+ * @property string $customer_id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ */
 class Newp extends Model
 {
     use HasFactory;
@@ -22,5 +37,10 @@ class Newp extends Model
     public function customer()
     {
         return $this->hasOne(Customer::class, 'id', 'customer_id');
+    }
+
+    public function productIncome()
+    {
+        return $this->hasOne(ProductIncome::class, 'id', 'product_income_id');
     }
 }
