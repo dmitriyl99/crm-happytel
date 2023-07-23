@@ -57,7 +57,7 @@ class WarehouseController extends Controller
     }
 
     /**
-     * @param ListproductRequest $request
+     * @param ProductIncomeRequest $request
      * @param $id
      * @return RedirectResponse
      * @throws NotFoundException
