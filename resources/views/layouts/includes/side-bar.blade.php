@@ -54,13 +54,7 @@
                                      <a class="nav-link" href="{{route('admin.warehouse.index')}}">Оприходование на склад</a>
                                  </li>
                                  <li class="nav-item {{ (request()->is('/admin/product/newp*')) ? 'menuitem-active' : '' }}">
-                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Продажа новых товаров</a>
-                                 </li>
-                                 <li class="nav-item {{ (request()->is('/admin/product/newp*')) ? 'menuitem-active' : '' }}">
-                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Возвраты</a>
-                                 </li>
-                                 <li class="nav-item {{ (request()->is('/admin/product/newp*')) ? 'menuitem-active' : '' }}">
-                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Возвраты</a>
+                                     <a class="nav-link" href="{{route('admin.newp.create')}}">Продажа товаров</a>
                                  </li>
                                  <li class="nav-item {{ (request()->is('/admin/newp/newp*')) ? 'menuitem-active' : '' }}">
                                      <a class="nav-link" href="{{route('admin.newp.index')}}">Проданные товары
