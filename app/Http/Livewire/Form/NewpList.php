@@ -15,18 +15,22 @@ class NewpList extends Component
     protected $listeners = [
         'add-product' => 'addProduct'
     ];
-    
+
     public function addProduct($data)
     {
-      
-          
         $list = Listproduct::where('id',$data['product_id'])->first();
         $newp = session('newp') ?? [];
-        $newSimcards[$data['count']] = ['products'=> $list->name,'count'=>$data['count'], 'product_id'=> $data['product_id']];
+        if (array_key_exists($data['product_id'], $newp)) {
+            $existingNewP = $newp[$data['product_id']];
+            $existingNewP['count'] += $data['count'];
+            $newp[$data['product_id']] = $existingNewP;
+        } else {
+            $newSimcards[$data['product_id']] = ['products' => $list->name, 'count' => $data['count'], 'product_id' => $data['product_id']];
+        }
 
-        session(['newp' => array_merge($newp,$newSimcards)]);
-        
-        
+        session(['newp' => $newp + ($newSimcards ?? [])]);
+
+
     }
     public function removeProduct($key)
     {
@@ -39,9 +43,9 @@ class NewpList extends Component
     public function mount()
     {
         request()->session('newp')->forget('newp');
-      
+
     }
-    
+
 
     public function render()
     {

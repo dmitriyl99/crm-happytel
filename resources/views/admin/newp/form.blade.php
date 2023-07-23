@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-md-6">
-
+        <div class="mb-3">
+            @livewire('form.barcode-livewire-component')
+        </div>
         <div class="mb-3">
             <label for="">Название товара</label>
             <select name="product_id" class="form-control" id="product_id">
