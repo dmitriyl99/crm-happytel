@@ -57,7 +57,11 @@
                                      <a class="nav-link" href="{{route('admin.newp.create')}}">Продажа товаров</a>
                                  </li>
                                  <li class="nav-item {{ (request()->is('/admin/newp/newp*')) ? 'menuitem-active' : '' }}">
-                                     <a class="nav-link" href="{{route('admin.newp.index')}}">Проданные товары
+                                     <a class="nav-link" href="{{route('admin.newp.index')}}">История продаж товаров
+                                     </a>
+                                 </li>
+                                 <li class="nav-item {{ (request()->is('/admin/product/sales/report')) ? 'menuitem-active' : '' }}">
+                                     <a class="nav-link" href="{{route('admin.newp.sales.report')}}">Отчет по продажам
                                      </a>
                                  </li>
                                  <!--end nav-item-->

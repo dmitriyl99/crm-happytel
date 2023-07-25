@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NewpReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,7 @@ Route::middleware(['auth','super_admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('warehouse',App\Http\Controllers\Admin\WarehouseController::class);
     Route::post('warehouse/import', [App\Http\Controllers\Admin\WarehouseController::class, 'import'])->name('warehouse.import');
     Route::resource('newp',App\Http\Controllers\Admin\NewpController::class);
+    Route::get('product/sales/report', [NewpReportController::class, 'reportIndex'])->name('newp.sales.report');
 
     Route::resource('simcard',App\Http\Controllers\Admin\SimCardController::class);
     Route::get('simcard/change/agent',[App\Http\Controllers\Admin\SimCardController::class,'changeAgent'])->name('simcard.change.agent');
