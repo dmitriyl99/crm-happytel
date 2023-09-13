@@ -238,7 +238,7 @@ class ApplicationController extends Controller
                 $application->update([
                     'status' => $status
                 ]);
-                if ($request->status == 'cancel') {
+                if ($request->status == 'cancel' && $application->agent_id !== 14) {
                     $agent = $application->agent;
                     $agent->balance -= $application->plan->price_sell;
                     $agent->save();
