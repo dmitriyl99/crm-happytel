@@ -126,7 +126,11 @@ class AgentController extends Controller
         $agent->update([
             'balance' => $agent->balance + $request->sum,
         ]);
-        
+
+        if ($request->agent_id == 14 && (auth()->user()->id != 64 || auth()->user()->id != 34)) {
+            return back()->with(['error' => 'Нет доступа к изменению баланса этого агента']);
+        }
+
         PaymentAction::create([
             'fee' => request()->sum,
             'agent_id' => request()->agent_id,
