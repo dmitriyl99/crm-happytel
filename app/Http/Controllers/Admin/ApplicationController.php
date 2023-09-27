@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\FileUpload;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplicationRequest;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\Application;
 use App\Models\ApplicationSimcard;
@@ -253,6 +254,7 @@ class ApplicationController extends Controller
         request()->validate([
             'region_group_id' => 'required',
             'plan_id' => 'required',
+            'payment_type' => 'required'
         ]);
 
         $newApplication = $application->replicate();
@@ -260,14 +262,15 @@ class ApplicationController extends Controller
         $newApplication->plan_id = request()->plan_id;
         $newApplication->status = "new";
         $newApplication->user_id = auth()->user()->id;
+        $newApplication->payment_type = request()->payment_type;
         $newApplication->save();
         return redirect()->route('admin.application.create', 'new')->with(['success' => 'Процесс успешно']);
     }
 
     public function addtionalPlan(Application $application)
     {
-
+        $payment_types = Setting::query()->get();
         $region_groups = RegionGroup::all();
-        return view('admin.application.additional', compact('application', 'region_groups'));
+        return view('admin.application.additional', compact('application', 'region_groups', 'payment_types'));
     }
 }

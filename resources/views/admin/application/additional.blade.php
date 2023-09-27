@@ -41,10 +41,15 @@
 
 						</div>
 						<div class="col-md-4">
-							<div class="mb-2">
-								<b>Тип платеж</b>
-							</div>
-							{{customPaymentType($application->payment_type ?? '')}}<br>
+                            <div class="col-md-4 mb-2">
+                                <label for="payment_type"><b>Тип платежа</b></label>
+                                <select name="payment_type" class="form-control" id="payment_type">
+                                    <option value="">Выбрать</option>
+                                    @foreach($payment_types as $item)
+                                        <option value="{{$item->key ?? ''}}" @if($application->payment_type == $item->key) selected @endif>{{$item->value ?? ''}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
 						</div>
 						<div class="col-md-4">
@@ -66,19 +71,19 @@
 						<div class="col-md-12 mb-3">
 							<hr>
 						</div>
-	
+
 						<div class="col-md-12">
 							<label for="">Название тарифа</label> <select
 								name="region_group_id" class="form-control" id="region_group_id">
-								<option value="">Выбрать</option> 
+								<option value="">Выбрать</option>
 								@foreach($region_groups as $item)
 								<option value="{{$item->id ?? ''}}">{{$item->name ?? ''}}</option>
 								@endforeach
 							</select>
 						</div>
-						
+
 						<div class="col-md-12">
-						
+
                         @livewire('form.plan-component',[
                             'simcardId' => old('simcard_id') ?? '',
                             'planId' => old('plan_id') ?? '',
@@ -115,13 +120,13 @@
     $(document).on('change','#region_group_id', function(){
     	 Livewire.emit('region_group_id_changed',$(this).val());
     });
-    
+
     $(document).ready(function(){
     	Livewire.on('add-simcard', () => {
     		$('#region_group_id  option:first').attr("selected", "selected");
 		});
     });
-    
+
     $(document).on('click','#add-simcard',function(){
     	var region_group_id = $('#region_group_id').val();
     	var plan_id = $('input[name="plan_id"]:checked').val();
