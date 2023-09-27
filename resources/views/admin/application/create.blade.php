@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">Создать Заявка</div>
+            <div class="card-header">Создать Заявку</div>
             <div class="card-body">
                 <form action="{{route('admin.application.store')}}" method="post"  enctype="multipart/form-data">
                     @csrf

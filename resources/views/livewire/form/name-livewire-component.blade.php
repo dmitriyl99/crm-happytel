@@ -52,10 +52,9 @@
         <label for="">Телефон</label>
         <input class="form-control" type="text" name="phone" placeholder="Телефон" wire:model.debounce.5000ms="phone">
     </div>
-
     <div class="mb-3">
         <label for="">Пасспорт</label>
-        <input type="file" name="passport" class="form-control">
+        <input type="file" name="passport" class="form-control" @if(request()->status == "new") required @endif>
     </div>
 
     <div class="mb-3">

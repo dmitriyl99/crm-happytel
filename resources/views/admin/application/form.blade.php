@@ -113,7 +113,7 @@
         } else if (!plan_id) {
             alert('Укажите план  ');
         } else if (!simcard_id) {
-            alert('Укажите симкарта  ');
+            alert('Укажите симкарту  ');
         } else {
             Livewire.emit('add-simcard', {
                 region_group_id: region_group_id,
